@@ -40,14 +40,26 @@ export async function criarConta(_: EstadoCadastro, form: FormData): Promise<Est
   });
 
   if (error) {
+    // aparece em Vercel › Logs, para diagnóstico
+    console.error("[cadastro] createUser falhou:", error.status, error.code, error.message);
     const m = error.message.toLowerCase();
     if (error.code === "email_exists" || m.includes("already") || m.includes("registered")) {
       return { erro: "Esse e-mail já tem conta. Volte e entre com sua senha." };
     }
     if (error.code === "weak_password" || m.includes("password")) {
-      return { erro: "Senha fraca. Use pelo menos 8 caracteres, misturando letras e números." };
+      return { erro: "Senha fraca. Use pelo menos 8 caracteres, misturando letras, números e um símbolo (ex.: !)." };
     }
-    return { erro: "Não foi possível criar a conta agora. Tente de novo." };
+    if (error.status === 401 || error.status === 403 || error.code === "not_admin" || m.includes("api key") || m.includes("jwt")) {
+      return {
+        erro: "Cadastro indisponível: a chave secreta do Supabase configurada na Vercel (SUPABASE_SECRET_KEY) está errada ou não é a “Secret key”. Avise o administrador.",
+      };
+    }
+    if (m.includes("database error")) {
+      return {
+        erro: "Cadastro indisponível: o banco recusou a nova conta. O administrador precisa rodar os arquivos SQL 002 e 003 no Supabase.",
+      };
+    }
+    return { erro: `Não foi possível criar a conta agora. Motivo: ${error.message}` };
   }
 
   // entra na conta recém-criada (ela verá a tela "Aguardando aprovação")
