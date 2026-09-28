@@ -1,0 +1,283 @@
+@import "tailwindcss";
+
+/* ------------------------------------------------------------------
+   Tema BSS Eventos — preto, ouro envelhecido e bronze
+   ------------------------------------------------------------------ */
+@theme inline {
+  --color-fundo: #100e0b;
+  --color-lateral: #0b0a08;
+  --color-painel: #1a1712;
+  --color-painel-2: #221e18;
+  --color-trilho: #2a241c;
+  --color-borda: #342d24;
+  --color-borda-forte: #4a4035;
+  --color-texto: #f2ebdd;
+  --color-texto-2: #cfc5b4;
+  --color-suave: #a99f8f;
+  --color-ouro: #d4a24c;
+  --color-ouro-claro: #e9c27a;
+  --color-bronze: #8c5e2a;
+  --color-tinta-ouro: #1a1209;
+  --color-pago: #7dbe8c;
+  --color-pago-claro: #9bd3a7;
+  --color-pago-fundo: #1f3326;
+  --color-pendente: #f0a35e;
+  --color-pendente-fundo: #3a2716;
+  --color-perigo: #ef6b5e;
+  --color-perigo-fundo: #3a1c18;
+
+  --font-titulo: "Zilla Slab", Georgia, serif;
+  --font-corpo: "Barlow", system-ui, sans-serif;
+  --font-rotulo: "Barlow Condensed", system-ui, sans-serif;
+}
+
+@layer base {
+  :root {
+    color-scheme: dark;
+  }
+
+  html,
+  body {
+    background: var(--color-fundo);
+    color: var(--color-texto);
+    font-family: var(--font-corpo);
+  }
+
+  body {
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection {
+    background: var(--color-ouro);
+    color: var(--color-tinta-ouro);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-ouro-claro);
+    outline-offset: 2px;
+  }
+
+  a {
+    color: var(--color-ouro-claro);
+  }
+
+  input::placeholder,
+  textarea::placeholder {
+    color: #8a8174;
+  }
+
+  /* campos preenchidos pelo navegador (senha salva) ficam no tema, sem fundo azul */
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus {
+    -webkit-text-fill-color: var(--color-texto);
+    -webkit-box-shadow: 0 0 0 1000px var(--color-painel-2) inset;
+    caret-color: var(--color-texto);
+    transition: background-color 9999s ease-out 0s;
+  }
+
+  .num {
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+/* ------------------------------------------------------------------
+   Componentes
+   ------------------------------------------------------------------ */
+@layer components {
+  .titulo {
+    font-family: var(--font-titulo);
+    font-weight: 700;
+    line-height: 1.1;
+  }
+
+  .rotulo {
+    font-family: var(--font-rotulo);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-suave);
+  }
+
+  .cartao {
+    background: var(--color-painel);
+    border: 1px solid var(--color-borda);
+    border-radius: 16px;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-height: 44px;
+    padding: 0 18px;
+    border-radius: 10px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-decoration: none;
+    white-space: nowrap;
+    cursor: pointer;
+    transition:
+      background-color 0.15s,
+      border-color 0.15s,
+      color 0.15s,
+      opacity 0.15s;
+  }
+  .btn:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+  }
+
+  .btn-ouro {
+    background: var(--color-ouro);
+    color: var(--color-tinta-ouro);
+    font-weight: 700;
+    box-shadow:
+      inset 0 1px 0 rgba(255, 236, 190, 0.55),
+      inset 0 -2px 0 rgba(90, 55, 15, 0.45);
+  }
+  .btn-ouro:hover {
+    background: var(--color-ouro-claro);
+    color: var(--color-tinta-ouro);
+  }
+
+  .btn-contorno {
+    border: 1px solid #3a3127;
+    background: transparent;
+    color: var(--color-texto);
+  }
+  .btn-contorno:hover {
+    border-color: var(--color-bronze);
+    color: var(--color-ouro-claro);
+  }
+
+  .btn-pago {
+    border: 1px solid var(--color-pago);
+    background: transparent;
+    color: var(--color-pago-claro);
+  }
+  .btn-pago:hover {
+    background: var(--color-pago-fundo);
+  }
+
+  .btn-perigo {
+    border: 1px solid #6b2f28;
+    background: transparent;
+    color: var(--color-perigo);
+  }
+  .btn-perigo:hover {
+    background: var(--color-perigo-fundo);
+  }
+
+  .btn-pequeno {
+    min-height: 36px;
+    padding: 0 12px;
+    font-size: 0.8125rem;
+    border-radius: 8px;
+  }
+
+  .btn-icone {
+    width: 44px;
+    min-height: 44px;
+    padding: 0;
+    color: var(--color-suave);
+    background: transparent;
+  }
+  .btn-icone:hover {
+    background: var(--color-trilho);
+    color: var(--color-ouro-claro);
+  }
+
+  .campo {
+    width: 100%;
+    min-height: 46px;
+    padding: 0 12px;
+    border: 1px solid #3a3127;
+    border-radius: 10px;
+    background: var(--color-painel-2);
+    color: var(--color-texto);
+    font-size: 1rem;
+  }
+  .campo:focus {
+    border-color: var(--color-ouro);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(212, 162, 76, 0.2);
+  }
+  textarea.campo {
+    padding: 10px 12px;
+    min-height: 90px;
+  }
+  select.campo {
+    padding-right: 8px;
+  }
+  /* iPhone: evita que campos de data estourem a largura */
+  input[type="date"].campo {
+    -webkit-appearance: none;
+    appearance: none;
+    display: block;
+    min-width: 0;
+    line-height: 46px;
+  }
+
+  .legenda-campo {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--color-texto-2);
+  }
+
+  .pilula {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    height: 26px;
+    padding: 0 10px;
+    border-radius: 13px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  .pilula-pago {
+    background: var(--color-pago-fundo);
+    color: var(--color-pago-claro);
+  }
+  .pilula-pendente {
+    background: var(--color-pendente-fundo);
+    color: var(--color-pendente);
+  }
+  .pilula-ouro {
+    background: var(--color-trilho);
+    color: var(--color-ouro-claro);
+  }
+  .pilula-neutra {
+    background: #24231f;
+    color: #b5aea2;
+  }
+
+  .trilho {
+    height: 8px;
+    border-radius: 4px;
+    background: var(--color-trilho);
+    overflow: hidden;
+  }
+
+  .aviso-erro {
+    border: 1px solid #6b2f28;
+    background: var(--color-perigo-fundo);
+    color: #ffb4aa;
+    border-radius: 10px;
+    padding: 10px 14px;
+    font-size: 0.875rem;
+  }
+  .aviso-ok {
+    border: 1px solid #2f5a3a;
+    background: var(--color-pago-fundo);
+    color: var(--color-pago-claro);
+    border-radius: 10px;
+    padding: 10px 14px;
+    font-size: 0.875rem;
+  }
+}
