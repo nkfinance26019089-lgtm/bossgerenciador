@@ -1,6 +1,6 @@
 "use client";
 
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useRef } from "react";
 import { descreverDispositivo, nomeDaTela } from "@/lib/dispositivo";
 import { Icone } from "./Icone";
@@ -50,11 +50,19 @@ export function Presenca({ evento }: { evento?: string }) {
   const tela = nomeDaTela(pathname) + (evento ? ` · ${evento}` : "");
   const telaRef = useRef(tela);
   telaRef.current = tela;
+  const router = useRouter();
 
   useEffect(() => {
+    let escondidoEm = 0;
     const sinal = () => {
-      if (document.visibilityState !== "visible") return;
+      if (document.visibilityState !== "visible") {
+        escondidoEm = Date.now();
+        return;
+      }
       enviarSinal(telaRef.current);
+      // voltou para o app depois de um tempo (ex.: estava em outro aplicativo): atualiza os números
+      if (escondidoEm && Date.now() - escondidoEm > 60_000) router.refresh();
+      escondidoEm = 0;
     };
     const id = setInterval(sinal, INTERVALO);
     document.addEventListener("visibilitychange", sinal);
@@ -62,7 +70,7 @@ export function Presenca({ evento }: { evento?: string }) {
       clearInterval(id);
       document.removeEventListener("visibilitychange", sinal);
     };
-  }, []);
+  }, [router]);
 
   // mudou de tela → avisa na hora
   useEffect(() => {

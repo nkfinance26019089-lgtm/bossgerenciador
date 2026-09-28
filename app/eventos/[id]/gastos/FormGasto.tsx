@@ -236,16 +236,20 @@ export function FormGasto({
 
       {estado.erro && <p className="aviso-erro">{estado.erro}</p>}
 
-      <div className="flex flex-col-reverse gap-3 border-t border-trilho pt-5 sm:flex-row sm:justify-end">
-        <a href={`/eventos/${eventoId}/gastos`} className="btn text-texto">
+      {/* No celular os botões ficam fixos logo acima da barra inferior: salvar sem rolar até o fim */}
+      <div className="sticky bottom-[calc(68px+env(safe-area-inset-bottom))] z-20 -mx-5 -mb-5 flex gap-2.5 rounded-b-2xl border-t border-trilho bg-painel/95 px-5 py-3 backdrop-blur sm:static sm:mx-0 sm:mb-0 sm:justify-end sm:gap-3 sm:rounded-none sm:bg-transparent sm:px-0 sm:pb-0 sm:pt-5 sm:backdrop-blur-none lg:bottom-0">
+        <a href={`/eventos/${eventoId}/gastos`} className="btn hidden text-texto sm:inline-flex">
           Cancelar
         </a>
         {!gasto && (
-          <BotaoEnviar className="btn btn-contorno" name="depois" value="outro" disabled={enviando}>
-            Salvar e registrar outro
+          <BotaoEnviar className="btn btn-contorno flex-1 !px-3 sm:flex-none sm:!px-[18px]" name="depois" value="outro" disabled={enviando}>
+            <span className="sm:hidden">Salvar + outro</span>
+            <span className="hidden sm:inline">Salvar e registrar outro</span>
           </BotaoEnviar>
         )}
-        <BotaoEnviar disabled={enviando}>{gasto ? "Salvar alterações" : "Salvar gasto"}</BotaoEnviar>
+        <BotaoEnviar className="btn btn-ouro flex-1 sm:flex-none" disabled={enviando}>
+          {gasto ? "Salvar alterações" : "Salvar gasto"}
+        </BotaoEnviar>
       </div>
     </form>
   );

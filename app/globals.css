@@ -45,6 +45,17 @@
 
   body {
     -webkit-font-smoothing: antialiased;
+    /* celular: sem "piscada" azul ao tocar e sem zoom por duplo toque */
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+    overscroll-behavior-y: none;
+  }
+
+  button,
+  a,
+  summary,
+  label {
+    -webkit-touch-callout: none;
   }
 
   ::selection {
@@ -279,5 +290,15 @@
     border-radius: 10px;
     padding: 10px 14px;
     font-size: 0.875rem;
+  }
+}
+
+/* Área segura do iPhone (entalhe em cima e barra de gestos embaixo) */
+@layer utilities {
+  .topo-seguro {
+    padding-top: env(safe-area-inset-top);
+  }
+  .base-segura {
+    padding-bottom: env(safe-area-inset-bottom);
   }
 }

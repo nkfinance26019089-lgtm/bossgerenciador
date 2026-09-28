@@ -3,6 +3,7 @@ import Link from "next/link";
 import { eventosDoUsuario, pedidosPendentes, sessaoAtual, usuarioAtual } from "@/lib/dados";
 import { Cabecalho } from "@/components/Cabecalho";
 import { Icone } from "@/components/Icone";
+import { InstalarApp } from "@/components/InstalarApp";
 import { ListaEventos, type ResumoEvento } from "./ListaEventos";
 
 export const metadata: Metadata = { title: "Seus eventos" };
@@ -52,6 +53,8 @@ export default async function Eventos({ searchParams }: { searchParams: Promise<
             </Link>
           )}
         </div>
+
+        <InstalarApp />
 
         {pendentes > 0 && (
           <Link

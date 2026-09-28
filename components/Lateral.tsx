@@ -8,6 +8,7 @@ import { Icone, type NomeIcone } from "./Icone";
 import { Avatar } from "./Avatar";
 import { BotaoSair, Presenca } from "./Presenca";
 import { OnlineAgora } from "./OnlineAgora";
+import { InstalarApp } from "./InstalarApp";
 
 type Props = {
   eventoId: string;
@@ -127,7 +128,7 @@ export function Lateral({ eventoId, eventoNome, eventos, usuario, papelNome, ehA
       <Presenca evento={eventoNome} />
 
       {/* Celular: barra superior */}
-      <header className="sticky top-0 z-40 flex h-14 items-center gap-3 border-b border-trilho bg-lateral/95 px-4 backdrop-blur lg:hidden">
+      <header className="topo-seguro sticky top-0 z-40 box-content flex h-14 items-center gap-3 border-b border-trilho bg-lateral/95 px-4 backdrop-blur lg:hidden">
         <Link href="/eventos" aria-label="Todos os eventos" className="shrink-0">
           <Image src="/logo-bss.webp" alt="BSS Eventos" width={480} height={457} className="h-10 w-auto rounded-md" />
         </Link>
@@ -170,7 +171,7 @@ export function Lateral({ eventoId, eventoNome, eventos, usuario, papelNome, ehA
       {aberto && (
         <div className="fixed inset-0 z-50 lg:hidden" role="dialog" aria-modal="true" aria-label="Menu">
           <button type="button" aria-label="Fechar menu" className="absolute inset-0 bg-black/60" onClick={() => setAberto(false)} />
-          <aside className="absolute inset-y-0 right-0 flex w-[min(320px,88vw)] flex-col gap-5 overflow-y-auto bg-lateral p-4 pb-[max(env(safe-area-inset-bottom),16px)]">
+          <aside className="absolute inset-y-0 right-0 flex w-[min(320px,88vw)] flex-col gap-5 overflow-y-auto bg-lateral p-4 pb-[max(env(safe-area-inset-bottom),16px)] pt-[max(env(safe-area-inset-top),16px)]">
             <div className="flex items-center justify-between">
               <span className="rotulo !text-ouro">Menu</span>
               <button type="button" className="btn btn-icone" aria-label="Fechar menu" onClick={() => setAberto(false)}>
@@ -179,6 +180,7 @@ export function Lateral({ eventoId, eventoNome, eventos, usuario, papelNome, ehA
             </div>
             {seletor}
             {navegacao}
+            <InstalarApp />
             {rodape}
           </aside>
         </div>

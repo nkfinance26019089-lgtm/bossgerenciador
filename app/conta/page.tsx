@@ -3,6 +3,7 @@ import Link from "next/link";
 import { usuarioAtual } from "@/lib/dados";
 import { Cabecalho } from "@/components/Cabecalho";
 import { Icone } from "@/components/Icone";
+import { InstalarApp } from "@/components/InstalarApp";
 import { FormNome, FormSenha } from "./FormsConta";
 
 export const metadata: Metadata = { title: "Minha conta" };
@@ -40,6 +41,11 @@ export default async function Conta({ searchParams }: { searchParams: Promise<{ 
         <section className="cartao flex flex-col gap-4 p-6">
           <h2 className="rotulo !text-ouro-claro">Seu nome no painel</h2>
           <FormNome nome={nome} />
+        </section>
+
+        <section className="cartao flex flex-col gap-4 p-6">
+          <h2 className="rotulo !text-ouro-claro">Aplicativo no celular</h2>
+          <InstalarApp variante="cartao" />
         </section>
       </main>
     </>

@@ -92,6 +92,14 @@ Em **Authentication › URL Configuration**:
 
 ---
 
+## Aplicativo no celular (PWA)
+
+O painel é um aplicativo instalável — não precisa de loja:
+
+- **Android (Chrome):** aparece o botão **Instalar app** (na tela de entrada, na lista de eventos, no Menu e em Minha conta). Depois de instalado, fica na gaveta de apps com o ícone da BSS e abre em tela cheia.
+- **iPhone (Safari):** toque em **Compartilhar › Adicionar à Tela de Início › Adicionar**. O painel mostra esse passo a passo.
+- Continua conectado, atualiza os números ao voltar para o app e mostra a tela “Sem conexão” quando falta internet.
+
 ## Atualizações do banco
 
 Se o painel já estava no ar, rode no SQL Editor apenas os arquivos novos, na ordem:

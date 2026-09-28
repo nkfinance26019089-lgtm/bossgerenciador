@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import { InstalarApp } from "@/components/InstalarApp";
 import { FormLogin } from "./FormLogin";
 
 export const metadata: Metadata = { title: "Entrar" };
@@ -28,6 +29,7 @@ export default async function Login({
           <h1 className="titulo text-3xl">Entrar</h1>
         </div>
         <FormLogin voltar={voltar} erroLink={erro === "link"} />
+        <InstalarApp />
         <p className="rounded-[10px] border border-trilho bg-painel px-4 py-3 text-center text-[13px] leading-relaxed text-suave">
           Contas novas só entram depois de aprovadas por um administrador da BSS Eventos.
         </p>

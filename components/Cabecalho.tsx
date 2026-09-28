@@ -15,7 +15,7 @@ export async function Cabecalho() {
   const superAdmin = !!perfil?.super_admin;
 
   return (
-    <header className="sticky top-0 z-40 border-b border-trilho bg-lateral/95 backdrop-blur">
+    <header className="topo-seguro sticky top-0 z-40 border-b border-trilho bg-lateral/95 backdrop-blur">
       <Presenca />
       <div className="mx-auto flex h-16 max-w-[1280px] items-center gap-2 px-4 sm:h-[76px] sm:gap-3 sm:px-10">
         <Link href="/eventos" className="flex min-w-0 items-center gap-3 text-texto no-underline">
